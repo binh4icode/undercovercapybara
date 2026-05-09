@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worthless piece of </title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        let Clicks = 0;
+        let clickPower = 1;
+        let clickCost = 10;
+        function updateClicks() {
+            Clicks += clickPower;
+            document.getElementById("CountText").textContent = Clicks
+        }
+
+        function buyUpgrade() {
+            if (Clicks >= clickCost){
+
+                Clicks-=clickCost;
+                clickPower += 1
+                clickCost = Math.round(clickCost*1.5)
+                document.getElementById("UpgradeButton").textContent = "Upgrade Click Power - " + clickCost
+                document.getElementById("CountText").textContent = Clicks
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--This is the worst website-->
+    <h1>I am a person called Steven</h1>
+    <p> I am a person that is 11 years old and has done Lua scripting on Roblox. Please play my games if you want (<b> the World, Kuro Oni, Meme Protocol [APLHA 0.1]</b>)
+        I love seafood and sushi and pho. I also am forced to read books about philosophy which makes no absolute sense (Like what do you mean the meaning of truth 
+        stretches into a whole <i>'nother reality,</i>)
+
+    </p>
+    <p style="background-color: blue; color: aqua;">This is BG color :)</p>
+    <a href = "https://www.roblox.com/games/77087670326244/Destroy-The-World">One of my games (Destroy-The-World)</a>
+    <img src = "Img1.png" alt=":( Bruh" width="200" height="200">
+    <table>
+        <caption>My Top 3 Favorite Games</caption>
+        <tr>
+            <th>Rank</th>
+            <th>Game Name</th>
+            <th>Rating out of 10</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Anime Final Quest</td>
+            <td>9.5/10</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Rivals</td>
+            <td>9/10</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>No Mercy</td>
+            <td>8.5/10</td>
+        </tr>
+    </table>
+    <h2>Runner ups to the table</h2>
+    <ul>
+        <li>Blox Fruits</li>
+        <li>My own games</li>
+        <li>Deadly Delivery</li>
+    </ul>
+    <h3>Example of ordered list</h3>
+    <ol>
+        <li>67</li>
+        <li>41</li>
+        <li>In 41 years it will be 2067</li>
+    </ol>
+    <p2 id = "CountText">0</p2>
+    <button onclick="updateClicks()">Click</button>
+    <button id = "UpgradeButton" onclick="buyUpgrade()">Upgrade Click Power - 10</button>
+</body>
+</html>
