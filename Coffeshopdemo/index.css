@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    
+    background: linear-gradient(to right, white, grey);
+
+}
+
+.img {
+    margin-top: 80px;
+    margin-right: 80px;
+    width: 800px;
+    height: 600px;
+}
