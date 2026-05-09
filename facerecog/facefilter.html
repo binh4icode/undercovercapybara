@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Squid Game Guard Filter</title>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+</head>
+
+<body>
+  <h1>A Filter for YOUR Ugly Face</h1>
+
+  <script>
+    let video;
+    let faceMesh;
+    let faces = [];
+
+    function preload() {
+      faceMesh = ml5.faceMesh({
+        maxFaces: 1
+      });
+    }
+
+    function setup() {
+      createCanvas(800, 550);
+
+      video = createCapture(VIDEO);
+      video.size(800, 550);
+      video.hide();
+
+      faceMesh.detectStart(video, gotFaces);
+    }
+
+    function draw() {
+
+      // Webcam
+      image(video, 0, 0, width, height);
+
+      if (faces.length > 0) {
+
+        let face = faces[0];
+
+        drawGuardHood(face);
+        drawFrontmanMask(face);
+      }
+    }
+
+    function drawGuardHood(face) {
+
+      let leftFace = face.keypoints[234];
+      let rightFace = face.keypoints[454];
+      let forehead = face.keypoints[10];
+      let chin = face.keypoints[152];
+
+      let centerX = (leftFace.x + rightFace.x) / 2;
+      let centerY = (forehead.y + chin.y) / 2;
+
+      // Hood size
+      let hoodWidth = dist(
+        leftFace.x,
+        leftFace.y,
+        rightFace.x,
+        rightFace.y
+      ) + 220;
+
+      let hoodHeight = dist(
+        forehead.x,
+        forehead.y,
+        chin.x,
+        chin.y
+      ) + 260;
+
+      noStroke();
+
+      // Outer red hood
+      fill(180, 0, 20);
+
+      ellipse(
+        centerX,
+        centerY - 10,
+        hoodWidth,
+        hoodHeight
+      );
+
+      // Dark hood opening
+      fill(20);
+
+      ellipse(
+        centerX,
+        centerY + 10,
+        hoodWidth * 0.62,
+        hoodHeight * 0.78
+      );
+    }
+
+    function drawFrontmanMask(face) {
+
+      let leftFace = face.keypoints[234];
+      let rightFace = face.keypoints[454];
+      let forehead = face.keypoints[10];
+      let chin = face.keypoints[152];
+
+      // Mask dimensions
+      let maskWidth = dist(
+        leftFace.x,
+        leftFace.y,
+        rightFace.x,
+        rightFace.y
+      ) + 60;
+
+      let maskHeight = dist(
+        forehead.x,
+        forehead.y,
+        chin.x,
+        chin.y
+      ) + 80;
+
+      let centerX = (leftFace.x + rightFace.x) / 2;
+      let centerY = (forehead.y + chin.y) / 2;
+
+      rectMode(CENTER);
+
+      // Black mask
+      fill(5);
+      stroke(0);
+      strokeWeight(5);
+
+      rect(
+        centerX,
+        centerY,
+        maskWidth,
+        maskHeight,
+        40
+      );
+
+      // White triangle symbol
+      noFill();
+      stroke(255);
+      strokeWeight(8);
+
+      triangle(
+        centerX,
+        centerY - 45,
+        centerX - 45,
+        centerY + 45,
+        centerX + 45,
+        centerY + 45
+      );
+    }
+
+    function gotFaces(results) {
+      faces = results;
+    }
+  </script>
+</body>
+</html>
