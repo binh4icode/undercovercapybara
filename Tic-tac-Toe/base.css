@@ -1,0 +1,22 @@
+.intro {
+    text-align: center;
+    color: black;
+    border: 5px black solid;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.cell {
+    width: 160px !important;
+    height: 160px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+}
+
+.main {
+    display: flex;
+    margin-top: 130px;
+    justify-content: center;
+}

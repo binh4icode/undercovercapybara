@@ -1,0 +1,44 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    background: linear-gradient(to bottom, rgb(112, 205, 248), rgb(0, 132, 255));
+}
+
+.header {
+    background: linear-gradient(to right, rgb(0, 174, 255), rgb(0, 110, 255));
+    text-align: center;
+    align-items: center;
+    width: 2000px;
+    height: 150px;
+    border: 3px solid rgb(0, 95, 219);
+    h1, h3 {
+        margin-top: 15px;
+        color: white;
+    }
+}
+
+.text {
+    width: 100vw;
+    text-align: center;
+    margin-top: 20px;
+    border: 4.5px dashed black;
+}
+
+.container {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .card {
+        width: 540px;
+        border: 3px solid black;
+    }
+
+
+    
+
+}
+
+

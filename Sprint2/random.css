@@ -1,0 +1,8 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-container div{
+    border: 2px black dashed;
+    padding: 2px;
+}

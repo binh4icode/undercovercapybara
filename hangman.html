@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+</head>
+<body>
+    <h1>Hangman</h1>
+    <script>
+        var words = [
+            "roblox",
+            "noob",
+            "coding",
+            "c++",
+            "food",
+        ];
+       
+        
+        var RandomWord = words[Math.floor(Math.random() * words.length)];
+       
+         var AnswerArray = [];
+         for (var i = 0; i < RandomWord.length; i++) {
+            AnswerArray[i] = "_";
+         };
+
+         var remainingLetters = RandomWord.length;
+         while (remainingLetters > 0) {
+            alert(AnswerArray.join(" "));
+            
+            var guess = prompt("TYPE IN SOMETHING OR PREPARE FOR DIE");
+            if (guess === null) {
+                break;
+            }else if(guess.length !==1){
+                alert("Please only enter one Character!")
+            }else{
+                guess = guess.toLowerCase();
+                for(var j = 0; j < RandomWord.length; j++){
+                    if (RandomWord[j] === guess) {
+                        AnswerArray[j] = guess;
+                        remainingLetters -= 1;
+                    }
+                }
+            }
+         };
+
+         alert(AnswerArray.join(" "));
+         alert("Good job I guess. The answer was obviously " + RandomWord + " you should've guessed it first try you suck.");
+    </script>
+</body>
+</html>
